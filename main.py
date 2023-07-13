@@ -53,6 +53,15 @@ def phtr2():
     submit_btn = Button(pr2, font=("Bahnschrift", 15), text= "Calculate", command= lambda: calc_x())
     submit_btn.grid(row=3, column=0, columnspan=2)
 
+    label_msg = Label(pr2, text="", font=("Bahnschrift", 15), padx=20)
+    label_msg.grid(row=0, column=3)
+
+    label_x1 = Label(pr2, text="", font=("Bahnschrift", 15), padx=20)
+    label_x1.grid(row=1, column=3)
+
+    label_x2 = Label(pr2, text="", font=("Bahnschrift", 15), padx=20)
+    label_x2.grid(row=2, column=3)
+
 
     pr2.title("Giải phương trình bậc 2")
     
@@ -63,38 +72,25 @@ def phtr2():
             c = int(entry_3.get())
             delta = b**2-4*a*c
             if delta < 0:
-                label_msg = Label(pr2, text=f"Phương trình vô nghiệm vì Δ<0 ({delta}<0)", font=("Bahnschrift", 15), padx=20)
-                label_msg.grid(row=0, column=3)
-
-                label_x1 = Label(pr2, text=f"X1 = Không xác định", font=("Bahnschrift", 15), padx=20)
-                label_x1.grid(row=1, column=3)
-
-                label_x2 = Label(pr2, text=f"X2 = Không xác định", font=("Bahnschrift", 15), padx=20)
-                label_x2.grid(row=2, column=3)
+                label_msg.config(text=f"Phương trình vô nghiệm vì Δ<0 ({delta}<0)")
+                label_x1.config(text="")
+                label_x2.config(text="")
             elif delta == 0:
                 temp = (-b+math.sqrt(delta))/(2*a)
-                label_msg = Label(pr2, text=f"Phương trình có nghiệm kép vì Δ=0 ({delta}=0)", font=("Bahnschrift", 15), padx=20)
-                label_msg.grid(row=0, column=3)
-
-                label_x1 = Label(pr2, text=f"X1 ={temp}", font=("Bahnschrift", 15), padx=20)
-                label_x1.grid(row=1, column=3)
-
-                label_x2 = Label(pr2, text=f"X2 ={temp}", font=("Bahnschrift", 15), padx=20)
-                label_x2.grid(row=2, column=3)
+                label_msg.config(text=f"Phương trình có nghiệm kép vì Δ=0 ({delta}=0)")
+                label_x1.config(text=f"X ={temp}")
+                label_x2.config(text="")
             elif delta > 0:
                 temp = (-b+math.sqrt(delta))/(2*a)
                 temp_2 = (-b-math.sqrt(delta))/(2*a)
-                label_msg = Label(pr2, text=f"Phương trình có hai nghiệm phân biệt vì Δ>0 ({delta}>0)", font=("Bahnschrift", 15), padx=20)
-                label_msg.grid(row=0, column=3)
-
-                label_x1 = Label(pr2, text=f"X1 ={temp}", font=("Bahnschrift", 15), padx=20)
-                label_x1.grid(row=1, column=3)
-
-                label_x2 = Label(pr2, text=f"X2 ={temp_2}", font=("Bahnschrift", 15), padx=20)
-                label_x2.grid(row=2, column=3)
+                label_msg.config(text=f"Phương trình có hai nghiệm phân biệt vì Δ>0 ({delta}>0)")
+                label_x1.config(text=f"X1 ={temp}")
+                label_x2.config(text=f"X2 ={temp_2}")
         except ValueError:
-            label_msg = Label(pr2, text=f"Hệ số không hợp lệ !", font=("Bahnschrift", 15), padx=20)
-            label_msg.grid(row=0, column=3)
+                label_msg.config(text="Hệ số không hợp lệ !")
+                label_x1.config(text="")
+                label_x2.config(text="")
+
         
 
 
