@@ -62,9 +62,11 @@ def phtr2():
     label_x2 = Label(pr2, text="", font=("Bahnschrift", 15), padx=20)
     label_x2.grid(row=2, column=3)
 
+    label_equation = Label(pr2, text="", font=("Bahnschrift", 15), padx=20)
+    label_equation.grid(row=3, column=3)
 
     pr2.title("Giải phương trình bậc 2")
-    
+    pr2.resizable(width=False,height=False)
     def calc_x():
         try:
             a = int(entry_1.get())
@@ -75,21 +77,25 @@ def phtr2():
                 label_msg.config(text=f"Phương trình vô nghiệm vì Δ<0 ({delta}<0)")
                 label_x1.config(text="")
                 label_x2.config(text="")
+                label_equation.config(text=f"PT: {a}x^2 x {b}x + {c} = 0")
             elif delta == 0:
                 temp = (-b+math.sqrt(delta))/(2*a)
                 label_msg.config(text=f"Phương trình có nghiệm kép vì Δ=0 ({delta}=0)")
                 label_x1.config(text=f"X ={temp}")
                 label_x2.config(text="")
+                label_equation.config(text=f"PT: {a}x^2 x {b}x + {c} = 0")
             elif delta > 0:
                 temp = (-b+math.sqrt(delta))/(2*a)
                 temp_2 = (-b-math.sqrt(delta))/(2*a)
                 label_msg.config(text=f"Phương trình có hai nghiệm phân biệt vì Δ>0 ({delta}>0)")
                 label_x1.config(text=f"X1 ={temp}")
                 label_x2.config(text=f"X2 ={temp_2}")
+                label_equation.config(text=f"PT: {a}x^2 x {b}x + {c} = 0")
         except ValueError:
                 label_msg.config(text="Hệ số không hợp lệ !")
                 label_x1.config(text="")
                 label_x2.config(text="")
+                label_equation.config(text="")
 
         
 
@@ -201,8 +207,9 @@ modeMenu = Menu(menuBar, tearoff = 0)
 menuBar.add_cascade(label="Mode", menu=modeMenu)
 modeMenu.add_command(label="Tính toán thông thường")
 modeMenu.add_command(label="Phương trình bậc 2", command=lambda: phtr2())
-modeMenu.add_command(label="Giải hệ phương trình")
+# modeMenu.add_command(label="Giải hệ phương trình")
 
 windows.config(menu=menuBar)
 windows.title("Calculator")
+windows.resizable(width=False,height=False)
 windows.mainloop()
