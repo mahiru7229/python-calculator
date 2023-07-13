@@ -1,12 +1,9 @@
 from tkinter import *
+import math
 # Build
 
 def btn_check(btn):
     rel_entry.insert(len(rel_entry.get())+1, btn)
-
-
-
-
 
 def calc():
     try:
@@ -27,9 +24,78 @@ def calc():
     except ZeroDivisionError:
         rel_entry.delete(0,END)
         rel_entry.insert(0,"Cannot divide 0")
-
+    except NameError:
+        rel_entry.delete(0,END)
+        rel_entry.insert(0,"Syntax ERROR")
 def clear():
     rel_entry.delete(0,END)
+
+def phtr2():
+    pr2 = Toplevel(windows)
+    label_1 = Label(pr2, text= "Hệ số a: ", font=("Bahnschrift", 15))
+    label_1.grid(row=0, column=0)
+
+    entry_1 = Entry(pr2, font=("Bahnschrift", 15), justify="center", width=6)
+    entry_1.grid(row=0, column=1)
+
+    label_2 = Label(pr2, text= "Hệ số b: ", font=("Bahnschrift", 15))
+    label_2.grid(row=1, column=0)
+
+    entry_2 = Entry(pr2, font=("Bahnschrift", 15), justify="center", width=6)
+    entry_2.grid(row=1, column=1)
+
+    label_3 = Label(pr2, text= "Hệ số c: ", font=("Bahnschrift", 15))
+    label_3.grid(row=2, column=0)
+
+    entry_3 = Entry(pr2, font=("Bahnschrift", 15), justify="center", width=6)
+    entry_3.grid(row=2, column=1)
+
+    submit_btn = Button(pr2, font=("Bahnschrift", 15), text= "Calculate", command= lambda: calc_x())
+    submit_btn.grid(row=3, column=0, columnspan=2)
+
+
+    pr2.title("Giải phương trình bậc 2")
+    
+    def calc_x():
+        try:
+            a = int(entry_1.get())
+            b = int(entry_2.get())
+            c = int(entry_3.get())
+            delta = b**2-4*a*c
+            if delta < 0:
+                label_msg = Label(pr2, text=f"Phương trình vô nghiệm vì Δ<0 ({delta}<0)", font=("Bahnschrift", 15), padx=20)
+                label_msg.grid(row=0, column=3)
+
+                label_x1 = Label(pr2, text=f"X1 = Không xác định", font=("Bahnschrift", 15), padx=20)
+                label_x1.grid(row=1, column=3)
+
+                label_x2 = Label(pr2, text=f"X2 = Không xác định", font=("Bahnschrift", 15), padx=20)
+                label_x2.grid(row=2, column=3)
+            elif delta == 0:
+                temp = (-b+math.sqrt(delta))/(2*a)
+                label_msg = Label(pr2, text=f"Phương trình có nghiệm kép vì Δ=0 ({delta}=0)", font=("Bahnschrift", 15), padx=20)
+                label_msg.grid(row=0, column=3)
+
+                label_x1 = Label(pr2, text=f"X1 ={temp}", font=("Bahnschrift", 15), padx=20)
+                label_x1.grid(row=1, column=3)
+
+                label_x2 = Label(pr2, text=f"X2 ={temp}", font=("Bahnschrift", 15), padx=20)
+                label_x2.grid(row=2, column=3)
+            elif delta > 0:
+                temp = (-b+math.sqrt(delta))/(2*a)
+                temp_2 = (-b-math.sqrt(delta))/(2*a)
+                label_msg = Label(pr2, text=f"Phương trình có hai nghiệm phân biệt vì Δ>0 ({delta}>0)", font=("Bahnschrift", 15), padx=20)
+                label_msg.grid(row=0, column=3)
+
+                label_x1 = Label(pr2, text=f"X1 ={temp}", font=("Bahnschrift", 15), padx=20)
+                label_x1.grid(row=1, column=3)
+
+                label_x2 = Label(pr2, text=f"X2 ={temp_2}", font=("Bahnschrift", 15), padx=20)
+                label_x2.grid(row=2, column=3)
+        except ValueError:
+            label_msg = Label(pr2, text=f"Hệ số không hợp lệ !", font=("Bahnschrift", 15), padx=20)
+            label_msg.grid(row=0, column=3)
+        
 
 
 
@@ -133,9 +199,13 @@ close_bracket_btn.grid(row=5, column=2,columnspan=4)
 
 
 menuBar = Menu(windows)
-fileMenu = Menu(menuBar, tearoff = 0)
+editMenu= Menu(menuBar, tearoff = 0)
+modeMenu = Menu(menuBar, tearoff = 0)
 
-menuBar.add_cascade(label="Mode", menu=fileMenu)
+menuBar.add_cascade(label="Mode", menu=modeMenu)
+modeMenu.add_command(label="Tính toán thông thường")
+modeMenu.add_command(label="Phương trình bậc 2", command=lambda: phtr2())
+modeMenu.add_command(label="Giải hệ phương trình")
 
 windows.config(menu=menuBar)
 windows.title("Calculator")
