@@ -1,6 +1,11 @@
 from tkinter import *
+from tkinter import messagebox
 import math
 # Build
+
+def about():
+    messagebox.showinfo(title="About Developer", message="Calculator created by mahriru7229\nAll Right Reserved.")
+
 
 def btn_check(btn):
     rel_entry.insert(len(rel_entry.get())+1, btn)
@@ -201,13 +206,17 @@ close_bracket_btn.grid(row=5, column=2,columnspan=4)
 
 
 menuBar = Menu(windows)
-editMenu= Menu(menuBar, tearoff = 0)
+aboutMenu= Menu(menuBar, tearoff = 0)
 modeMenu = Menu(menuBar, tearoff = 0)
 
 menuBar.add_cascade(label="Mode", menu=modeMenu)
+menuBar.add_cascade(label="About", menu=aboutMenu)
 modeMenu.add_command(label="Tính toán thông thường")
 modeMenu.add_command(label="Phương trình bậc 2", command=lambda: phtr2())
 # modeMenu.add_command(label="Giải hệ phương trình")
+
+
+aboutMenu.add_command(label="Dev about", command=lambda: about())
 
 windows.config(menu=menuBar)
 windows.title("Calculator")
