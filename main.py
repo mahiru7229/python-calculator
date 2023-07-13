@@ -4,7 +4,7 @@ import math
 # Build
 
 def about():
-    messagebox.showinfo(title="About Developer", message="Calculator created by mahriru7229\nAll Right Reserved.")
+    messagebox.showinfo(title="About Developer", message="Calculator created by mahiru7229\nAll Right Reserved.")
 
 
 def btn_check(btn):
