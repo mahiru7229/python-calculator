@@ -1,5 +1,5 @@
 # Info
- Calculator by mahiru7229
+ Calculator by mahiru7229\
  A project for practicing Python GUI.
 
 
