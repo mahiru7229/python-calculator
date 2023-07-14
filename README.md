@@ -1,5 +1,11 @@
-# Welcome
- Calculator 1.1 by mahiru7229
+# Info
+ Calculator by mahiru7229
+ A project for practicing Python GUI.
+
 
 # Downloads
- Lastest (1.1): [Calculator 1.1](https://cdn.discordapp.com/attachments/1129048257616683009/1129048312281047091/main.exe)
+ You can download the lastest release (here)[https://github.com/mahiru7229/python-calculator/releases]
+
+# Contribute
+ customtkinter's Author
+
