@@ -1,5 +1,5 @@
-from tkinter import Menu
 from tkinter.ttk import *
+from tkinter import messagebox
 import customtkinter
 import tkinter as tk
 import math
@@ -105,6 +105,8 @@ def phtr1():
         except:
             ans_lbl.configure(text="Có gì đó không đúng, vui lòng thử lại sau")
             phtr1_show.configure(text="")
+
+    phtr1_win.resizable(width=False, height=False)
     phtr1_win.title("Giải phương trình bậc nhất")
     phtr1_win.grab_set()
 
@@ -150,6 +152,7 @@ def phtr2():
     phtr2_show = customtkinter.CTkLabel(phtr2_win, text="", font=("Bahnschrift", 18))
     phtr2_show.grid(row=3, column=3, padx=5, pady=5)
 
+    phtr2_win.resizable(width=False, height=False)
     # def optionmenu_callback(choice):
     #     if os.path.exists(os.path.join("assets","user_setting")):
     #         with open(os.path.join("assets","user_setting","setting.json"), "w") as temp:
@@ -209,6 +212,106 @@ def phtr2():
 
 
 
+def hpt_1():
+    hpt_1_win = customtkinter.CTkToplevel()
+
+
+
+    hs_a_lbl = customtkinter.CTkLabel(hpt_1_win, text="Hệ số a: ", font=("Bahnschrift", 18))
+    hs_a_lbl.grid(row=0, column=0, padx=5, pady=5)
+
+    hs_b_lbl = customtkinter.CTkLabel(hpt_1_win, text="Hệ số b: ", font=("Bahnschrift", 18))
+    hs_b_lbl.grid(row=1, column=0, padx=5, pady=5)
+
+    hs_c_lbl = customtkinter.CTkLabel(hpt_1_win, text="Hệ số c: ", font=("Bahnschrift", 18))
+    hs_c_lbl.grid(row=2, column=0, padx=5, pady=5)
+
+    hs_a_entry = customtkinter.CTkEntry(hpt_1_win, placeholder_text="a=?", font=("Bahnschrift", 18))
+    hs_a_entry.grid(row=0,column=1,padx=5, pady=5)
+
+    hs_b_entry = customtkinter.CTkEntry(hpt_1_win, placeholder_text="b=?", font=("Bahnschrift", 18))
+    hs_b_entry.grid(row=1,column=1,padx=5, pady=5)
+
+    hs_c_entry = customtkinter.CTkEntry(hpt_1_win, placeholder_text="c=?", font=("Bahnschrift", 18))
+    hs_c_entry.grid(row=2,column=1,padx=5, pady=5)
+
+    hs_a1_lbl = customtkinter.CTkLabel(hpt_1_win, text="Hệ số a': ", font=("Bahnschrift", 18))
+    hs_a1_lbl.grid(row=3, column=0, padx=5, pady=5)
+
+    hs_b1_lbl = customtkinter.CTkLabel(hpt_1_win, text="Hệ số b': ", font=("Bahnschrift", 18))
+    hs_b1_lbl.grid(row=4, column=0, padx=5, pady=5)
+
+    hs_c1_lbl = customtkinter.CTkLabel(hpt_1_win, text="Hệ số c': ", font=("Bahnschrift", 18))
+    hs_c1_lbl.grid(row=5, column=0, padx=5, pady=5)
+
+    hs_a1_entry = customtkinter.CTkEntry(hpt_1_win, placeholder_text="a'=?", font=("Bahnschrift", 18))
+    hs_a1_entry.grid(row=3,column=1,padx=5, pady=5)
+
+    hs_b1_entry = customtkinter.CTkEntry(hpt_1_win, placeholder_text="b'=?", font=("Bahnschrift", 18))
+    hs_b1_entry.grid(row=4,column=1,padx=5, pady=5)
+
+    hs_c1_entry = customtkinter.CTkEntry(hpt_1_win, placeholder_text="c'=?", font=("Bahnschrift", 18))
+    hs_c1_entry.grid(row=5,column=1,padx=5, pady=5)
+
+    submit_btn = customtkinter.CTkButton(hpt_1_win, text="Calculate", font=("Bahnschrift", 18), hover_color=HOVER_COLOR, command=lambda:calc_hpt_1())
+    submit_btn.grid(row=6, column=0, padx=5, pady=5)
+
+    temp_desc = customtkinter.CTkLabel(hpt_1_win, text="", font=("Bahnschrift", 18))
+    temp_desc.grid(row=0, column=3, padx=5, pady=5)
+
+    ans_x_lbl = customtkinter.CTkLabel(hpt_1_win, text="", font=("Bahnschrift", 18))
+    ans_x_lbl.grid(row=1, column=3, padx=5, pady=5)
+
+    ans_y_lbl = customtkinter.CTkLabel(hpt_1_win, text="", font=("Bahnschrift", 18))
+    ans_y_lbl.grid(row=2, column=3, padx=5, pady=5)
+
+    hpt_1_1_show = customtkinter.CTkLabel(hpt_1_win, text="", font=("Bahnschrift", 18))
+    hpt_1_1_show.grid(row=3, column=3, padx=5, pady=5)
+
+    hpt_1_2_show = customtkinter.CTkLabel(hpt_1_win, text="", font=("Bahnschrift", 18))
+    hpt_1_2_show.grid(row=4, column=3, padx=5, pady=5)
+
+    hpt_1_win.resizable(width=False, height=False)
+    hpt_1_win.title("Giải hệ phương trình bậc nhất 2 ẩn")
+    hpt_1_win.grab_set()
+
+
+    def calc_hpt_1():
+        try:
+            a = int(hs_a_entry.get())
+            b = int(hs_b_entry.get())
+            c = int(hs_c_entry.get())
+            a1 = int(hs_a1_entry.get())
+            b1 = int(hs_b1_entry.get())
+            c1 = int(hs_c1_entry.get())
+            if ((a/a1) == (b/b1)) and ((b/b1) == (c/c1)): 
+                temp_desc.configure(text="Phương trình có vô số nghiệm")
+                ans_x_lbl.configure(text="")
+                ans_y_lbl.configure(text="")
+            if ((a/a1) == (b/b1)) and ((b/b1) != (c/c1)): 
+                temp_desc.configure(text="Phương trình vô nghiệm")
+                ans_x_lbl.configure(text="")
+                ans_y_lbl.configure(text="")
+            if (a/a1) != (b/b1) :
+                temp_desc.configure(text="Phương trình có một nghiệm duy nhất")
+                y = (a*c1-a1*c)/(-a1*b+a*b1)
+                x = (c-b*y)/a
+                ans_x_lbl.configure(text=f"X = {x}")
+                ans_y_lbl.configure(text=f"Y = {y}")
+            hpt_1_1_show.configure(text=f"{a}x + {b}y = {c}")
+            hpt_1_2_show.configure(text=f"{a1}x + {b1}y = {c1}")
+        except ValueError:
+            temp_desc.configure(text="Hệ số không hợp lệ")
+            ans_x_lbl.configure(text="")
+            ans_y_lbl.configure(text="")
+            hpt_1_1_show.configure(text="")
+            hpt_1_2_show.configure(text="")
+        except:
+            temp_desc.configure(text="Hệ số không hợp lệ")
+            ans_x_lbl.configure(text="")
+            ans_y_lbl.configure(text="")
+            hpt_1_1_show.configure(text="")
+            hpt_1_2_show.configure(text="")
 
 
 
@@ -219,12 +322,8 @@ def phtr2():
 
 
 
-
-
-
-
-
-
+def info():
+    messagebox.showinfo(title="About Developer", message="Calculator created by @mahiru7229\nAll right reserved.")
 
 
 
@@ -273,6 +372,12 @@ phtr1_btn.grid(row=0, column=0, padx=5, pady=5)
 
 phtr2_btn = customtkinter.CTkButton(master=option_frame, text="Giải phương trình bậc hai", font=("Bahnschrift", 18), hover_color=HOVER_COLOR,command = lambda: phtr2())
 phtr2_btn.grid(row=1, column=0, padx=5, pady=5)
+
+hpt_btn = customtkinter.CTkButton(master=option_frame, text="HPT bậc nhất 2 ẩn", font=("Bahnschrift", 18), hover_color=HOVER_COLOR,command = lambda: hpt_1())
+hpt_btn.grid(row=2, column=0, padx=5, pady=5)
+
+about_btn = customtkinter.CTkButton(master=option_frame, text="Thông tin", font=("Bahnschrift", 18), hover_color=HOVER_COLOR,command = lambda: info())
+about_btn.grid(row=3, column=0, padx=5, pady=5)
 
 
 rel_entry = customtkinter.CTkEntry(master=calc_frame, placeholder_text="Type", font=("Bahnschrift", ENTRY_FONT_SIZE), width=ENTRY_WIDTH*4, justify="center", border_color="#474747")
