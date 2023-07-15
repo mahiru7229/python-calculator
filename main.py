@@ -305,7 +305,7 @@ number_8.grid(row=3, column=1)
 number_9 = customtkinter.CTkButton(master=button_frame, text="9", font=("Bahnschrift", BTN_FONT_SIZE), height=BTN_HEIGHT, width=BTN_WIDTH, hover_color=HOVER_COLOR, command=lambda: btn_check(9))
 number_9.grid(row=3, column=2)
 
-number_0 = customtkinter.CTkButton(master=button_frame, text="0", font=("Bahnschrift", BTN_FONT_SIZE), height=BTN_HEIGHT, width=BTN_WIDTH, hover_color=HOVER_COLOR, command=lambda: btn_check(9))
+number_0 = customtkinter.CTkButton(master=button_frame, text="0", font=("Bahnschrift", BTN_FONT_SIZE), height=BTN_HEIGHT, width=BTN_WIDTH, hover_color=HOVER_COLOR, command=lambda: btn_check(0))
 number_0.grid(row=4, column=0)
 
 clear_btn = customtkinter.CTkButton(master=button_frame, text="C", font=("Bahnschrift", BTN_FONT_SIZE), height=BTN_HEIGHT, width=BTN_WIDTH, hover_color=HOVER_COLOR, fg_color="#c79d04", command=lambda: clear())
